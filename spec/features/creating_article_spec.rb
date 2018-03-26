@@ -15,4 +15,23 @@ RSpec.feature "Creating Article" do
     expect(page).to have_content("Article has been created")
     expect(page.current_path).to eq(articles_path)
   end
+
+# Test validation
+  scenario "A user fails to create a new article" do
+    visit "/"
+    #visit root/ go to root page
+    click_link "New Article"
+    # make the name what you creates
+    fill_in "Title", with: ""
+    #capybara will fill in for you in the field
+    fill_in "Body", with: ""
+
+    click_button "Create Article"
+
+    #same until here as above expectation changes
+    expect(page).to have_content("Article has not been created")
+    expect(page).to have_content("Title can't be blank")
+    expect(page).to have_content("Body can't be blank")
+
+  end
 end
