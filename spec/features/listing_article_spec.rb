@@ -4,8 +4,10 @@ RSpec.feature "Listing Articles" do
   #create two articles to disply
   #expect both title and bodies to be present
   before do
-    @article1 = Article.create(title: "The first article", body: "Here is the body for the first article")
-    @article2 = Article.create(title: "The second article", body: "Here is the body for the second article")
+    john = User.create!(email: "john@example.com", password: "password")
+    # login_as(john) don'T need to be looged in
+    @article1 = Article.create(title: "The first article", body: "Here is the body for the first article", user: john)
+    @article2 = Article.create(title: "The second article", body: "Here is the body for the second article", user: john)
   end
 
   scenario "A user lists all articles" do
