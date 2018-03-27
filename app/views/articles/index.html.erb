@@ -14,6 +14,10 @@
       <div class="article-body">
         <%= truncate(article.body, length: 500) %>
       </div>
+      <div class="author">
+        <small>Created by: <%= article.user.email %></small><br />
+        <small><%= article.created_at.strftime("%-m/%-d/%y: %H:%M %Z") %></small>
+      </div>
     </div>
   <% end %>
 <% end %>
